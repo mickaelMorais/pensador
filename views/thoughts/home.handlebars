@@ -1,0 +1,39 @@
+<section class="home-header">
+	{{#if search}}
+		<h1>Você esta procurando por "{{search}}"</h1>
+		<p>Foram encontrados {{qtd}} resultados</p>
+	{{else}}
+		<h1>Todos os pensamentos</h1>
+	{{/if}}
+	<form action="/thoughts/search" method="get">
+		<input type="text" name="search" placeholder="Esta buscando algo?" />
+		<button type="submit" class="btn">Buscar</button>
+	</form>
+	<div class="order-container">
+		<span>ordenar por:</span>
+		<form action="/thoughts/asc" method="get">
+			<button type="submit">
+				<i class="bi bi-arrow-up"></i>
+				mais novos
+			</button>
+		</form>
+		<form action="/thoughts/desc" method="get">
+			<button type="submit">
+				<i class="bi bi-arrow-down"></i>
+				mais antigos
+			</button>
+		</form>
+		<a href="/">limpar</a>
+	</div>
+</section>
+<div class="thoughts-container">
+	{{#each thoughts}}
+		<figure>
+			<blockquote>"{{this.title}}"</blockquote>
+		<figcaption>
+			Por
+			<span>{{this.User.email}}</span>
+		</figcaption>
+		</figure>
+	{{/each}}
+</div>
